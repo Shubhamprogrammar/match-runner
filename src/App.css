@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+body{
+  background: url('/public/flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+}
