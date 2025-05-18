@@ -4,7 +4,7 @@ import data from "../assets/data.json";
 export default function Details() {
   const innings = data.innings;
 
-  const targetRuns = 175;
+  const targetRuns = 176;
 
   const team1Deliveries =
     innings[0].overs.flatMap((over) =>
@@ -313,7 +313,7 @@ export default function Details() {
                 <div className="d-flex justify-content-center gap-4">
                   <div><strong>RRR:</strong> {requiredRunRate.toFixed(2)}</div>
                   <div><strong>CRR:</strong> {currentRunRate.toFixed(2)}</div>
-                  <div><strong>Target:</strong> {targetRuns + 1} Runs</div>
+                  <div><strong>Target:</strong> {targetRuns} Runs</div>
                 </div>
               )}
 
@@ -323,7 +323,7 @@ export default function Details() {
                     {totalRuns >= targetRuns
                       ? "RR won by " + wicketsLeft + " wickets"
                       : totalRuns < targetRuns
-                        ? "SRH won by " + (targetRuns - totalRuns) + " runs"
+                        ? "SRH won by " + (targetRuns - totalRuns -1) + " runs"
                         : "Match Tied"}
                   </strong>
                 </div>
