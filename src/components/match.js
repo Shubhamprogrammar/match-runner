@@ -121,7 +121,7 @@ export default function Match() {
                     </div>
 
                     {/* Live Score */}
-                    <h3 className="fw-bold text-primary mb-1">{totalRuns}/{wickets}</h3>
+                    <h3 className="fw-bold text-primary mb-1">{totalRuns} - {wickets}</h3>
                     <p className="fs-6 text-muted mb-2">Overs: {overDisplay}</p>
 
                     {/* Result */}

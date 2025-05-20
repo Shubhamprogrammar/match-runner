@@ -7,7 +7,7 @@ export default function Details() {
   const targetRuns = 176;
 
   const team1Deliveries =
-    innings[0].overs.flatMap((over) =>
+    innings[0]?.overs?.flatMap((over) =>
       over.deliveries.map((delivery) => ({
         ...delivery,
         team: innings[0].team,
@@ -15,7 +15,7 @@ export default function Details() {
     ) || [];
 
   const team2Deliveries =
-    innings[1].overs.flatMap((over) =>
+    innings[1]?.overs?.flatMap((over) =>
       over.deliveries.map((delivery) => ({
         ...delivery,
         team: innings[1].team,
@@ -123,13 +123,13 @@ export default function Details() {
           setBoundaryAlert(`${delivery.batter} hit a ${runs}! 🎉`);
           setTimeout(() => setBoundaryAlert(""), 1500);
         }
-        if(runs===4){
+        if (runs === 4) {
           setFourRuns(prev => ({
             ...prev,
             [delivery.batter]: (prev[delivery.batter] || 0) + 1
           }))
         }
-        if(runs===6){
+        if (runs === 6) {
           setSixRuns(prev => ({
             ...prev,
             [delivery.batter]: (prev[delivery.batter] || 0) + 1
@@ -145,7 +145,7 @@ export default function Details() {
             ...prev,
             [delivery.batter]: {
               kind: wicketDetails.kind,
-              fielder: wicketDetails.fielders[0].name || "",
+              fielder: wicketDetails.fielders?.[0].name || "",
               bowler: delivery.bowler
             }
           }));
@@ -247,7 +247,7 @@ export default function Details() {
         }
 
         setCurrentBall((prev) => prev + 1);
-      }, 1300);
+      }, 1400);
 
       return () => clearTimeout(timer);
     } else if (isTeam1) {
@@ -323,7 +323,7 @@ export default function Details() {
                     {totalRuns >= targetRuns
                       ? "RR won by " + wicketsLeft + " wickets"
                       : totalRuns < targetRuns
-                        ? "SRH won by " + (targetRuns - totalRuns -1) + " runs"
+                        ? "SRH won by " + (targetRuns - totalRuns - 1) + " runs"
                         : "Match Tied"}
                   </strong>
                 </div>
@@ -345,7 +345,7 @@ export default function Details() {
                         className="btn btn-sm btn-outline-primary"
                         onClick={() => setShowScorecard(!showScorecard)}
                       >
-                        {showScorecard ? "Hide Scorecard" : "Show Scorecard"}
+                        {showScorecard ? "Hide Scoreboard" : "Show Scoreboard"}
                       </button>
                     </div>
                   </>
@@ -424,7 +424,7 @@ export default function Details() {
             {/* Scorecard Section */}
             {showScorecard && (
               <div className="mt-4 scorecard-container">
-                <h5 className="text-center fw-bold mb-3">Scorecard</h5>
+                <h5 className="text-center fw-bold mb-3">Scoreboard</h5>
 
                 {/* Team Selection Tabs */}
                 <div className="team-selector mb-3">
@@ -599,7 +599,7 @@ export default function Details() {
                             {team2Batsmen.map((batter) => {
                               const runs = batsmanRuns[batter] || 0;
                               const balls = ballsFaced[batter] || 0;
-                              
+
                               const fours = fourRuns[batter] || 0
                               const sixes = sixRuns[batter] || 0
 
@@ -679,7 +679,8 @@ export default function Details() {
                   </>
                 )}
               </div>
-            )}         </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
